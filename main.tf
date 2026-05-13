@@ -10,7 +10,7 @@ resource "aws_vpc" "terraform_vpc" {
 
 # Correcao primeira issue
 resource "aws_flow_log" "example" {
-  log_destination      = "arn:aws:s3:::<clc15-cami-terraform>"
+  log_destination      = "arn:aws:s3:::clc15-cami-terraform"
   log_destination_type = "s3"
   traffic_type         = "ALL"
   vpc_id               = aws_vpc.terraform_vpc.id
