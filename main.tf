@@ -8,6 +8,23 @@ resource "aws_vpc" "terraform_vpc" {
   }
 }
 
+# Correcao primeira issue
+resource "aws_flow_log" "example" {
+  log_destination      = "arn:aws:s3:::<clc15-cami-terraform>"
+  log_destination_type = "s3"
+  traffic_type         = "ALL"
+  vpc_id               = aws_vpc.terraform_vpc.id
+}
+
+# Correcao segunda issue
+resource "aws_default_security_group" "default" {
+  vpc_id = aws_vpc.terraform_vpc.id
+  
+  tags = {
+    Name = "my-iac-sg"
+  }
+}
+
 ## Cria as 4 subnets em suas respectivas AZs ##
 ## Cria subnets na AZ 1A
 resource "aws_subnet" "subnet_public_1a" {
